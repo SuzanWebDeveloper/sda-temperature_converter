@@ -19,11 +19,34 @@ class Temperature
 
   public static void Main(String[] args)
   {
-    string result;
-    Console.WriteLine("Enter a temperature and its unit(C or F):");
-    string input = Console.ReadLine() ?? "";
-    string[] inputSplitted = input.Split(" ");
-    result = TempConvert(Convert.ToDouble(inputSplitted[0]), inputSplitted[1]);
-    Console.WriteLine($"Converted: {input} = {result}");
+    while (true)
+    {
+      Console.WriteLine("Enter a temperature and its unit (C or F), or type 'Quit' to exit:");
+      string input = Console.ReadLine() ?? "";
+      string[] inputSplitted = input.Split(" ");
+      if (input.ToLower() == "quit")
+      {
+        Console.WriteLine("Program terminated.");
+        break;
+      }
+      if (inputSplitted.Length != 2)
+      {
+        Console.WriteLine("Invalid input. Please enter a temperature and its unit (C or F) \n");
+        continue;
+      }
+      if (!double.TryParse(inputSplitted[0], out double tempValue))
+      {
+        Console.WriteLine("Invalid input. Please enter a numeric temperature. \n");
+        continue;
+      }
+      string tempUnit = inputSplitted[1].ToUpper();
+      if (tempUnit != "C" && tempUnit != "F")
+      {
+        Console.WriteLine("Invalid scale. Please enter 'C' for Celsius or 'F' for Fahrenheit. \n");
+        continue;
+      }
+      string result = TempConvert(tempValue, tempUnit);
+      Console.WriteLine($"Converted: {input} = {result} \n");
+    }
   }
 }
