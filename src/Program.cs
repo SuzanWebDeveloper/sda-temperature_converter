@@ -1,5 +1,11 @@
 ﻿using System;
 
+// Modify the application to prompt the user for a temperature value and a scale (Celsius 'C' or Fahrenheit 'F').
+// // Expected output
+// Enter a temperature and its unit (C or F):
+// > 45 F
+// Converted: 45 F = 7.22 C
+
 class Temperature
 {
   public static string TempConvert(int amount, string unit)
@@ -20,10 +26,11 @@ class Temperature
 
   public static void Main(String[] args)
   {
-    string result1 = TempConvert(32, "F");
-    Console.WriteLine($"{result1}");
-    string result2 = TempConvert(100, "C");
-    Console.WriteLine($"{result2}");
+    string result;
+    result = TempConvert(32, "F");
+    Console.WriteLine($"{result}");
+    result = TempConvert(100, "C");
+    Console.WriteLine($"{result}");
   }
 
 }
